@@ -2,10 +2,13 @@
 
 ### 已开发接口
 
-| 请求方法 |            API 地址             |                  说明                   |
-| :------: | :-----------------------------: | :-------------------------------------: |
-|   POST   | /api/v1/auth/signup/phone/exist | 验证手机号是否已注册(JSON参数名`phone`) |
-|   POST   | /api/v1/auth/signup/email/exist |  验证邮箱是否已注册(JSON参数名`email`)  |
+| 请求方法 |             API 地址              |                   说明                   |
+| :------: | :-------------------------------: | :--------------------------------------: |
+|   POST   |  /api/v1/auth/signup/phone/exist  | 验证手机号是否已注册(JSON参数名`phone`)  |
+|   POST   |  /api/v1/auth/signup/email/exist  |  验证邮箱是否已注册(JSON参数名`email`)   |
+|   POST   | /api/v1/auth/verify-codes/captcha | 生成图像验证码并base64编码后返回给客户端 |
+
+
 
 ### 技术栈/第三方库
 
@@ -15,3 +18,5 @@
 - `viper`：配置环境
 - `cast`：类型转换
 - `govalidator`：请求验证器
+- `Redis`：缓存
+- `captcha`：图片验证码库
