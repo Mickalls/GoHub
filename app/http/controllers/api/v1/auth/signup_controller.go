@@ -45,3 +45,33 @@ func (sc *SignupController) IsPhoneExist(c *gin.Context) {
 		"exist": user.IsPhoneExist(request.Phone),
 	})
 }
+
+// IsEmailExist 检测邮箱号是否被注册
+func (sc *SignupController) IsEmailExist(c *gin.Context) {
+	// 获取请求对象
+	request := requests.SignupEmailExistRequest{}
+
+	// 解析JSON请求
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
+			"error": err.Error(),
+		})
+		// 打印错误信息
+		fmt.Println(err.Error())
+		// 中断
+		return
+	}
+
+	// 表单验证
+	if errs := requests.ValidateSignupEmailExist(&request, c); len(errs) > 0 {
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
+			"errors": errs,
+		})
+		return
+	}
+
+	// 检查数据库并返回响应
+	c.JSON(http.StatusOK, gin.H{
+		"exist": user.IsEmailExist(request.Email),
+	})
+}
