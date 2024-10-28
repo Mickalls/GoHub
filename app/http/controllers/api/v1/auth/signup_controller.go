@@ -3,6 +3,7 @@ package auth
 import (
 	v1 "GoHub/app/http/controllers/api/v1"
 	"GoHub/app/models/user"
+	"GoHub/app/requests"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -16,10 +17,7 @@ type SignupController struct {
 // IsPhoneExist 检测手机号是否被注册
 func (sc *SignupController) IsPhoneExist(c *gin.Context) {
 	// 请求对象
-	type PhoneExistRequest struct {
-		Phone string `json:"phone"`
-	}
-	request := PhoneExistRequest{}
+	request := requests.SignupPhoneExistRequest{}
 
 	// 解析JSON请求
 	if err := c.ShouldBindJSON(&request); err != nil {
@@ -30,6 +28,15 @@ func (sc *SignupController) IsPhoneExist(c *gin.Context) {
 		// 打印错误信息
 		fmt.Println(err.Error())
 		// 中断
+		return
+	}
+
+	// 表单验证
+	if errs := requests.ValidateSignupPhoneExist(&request, c); len(errs) > 0 {
+		// 验证失败，返回422状态码和错误信息
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
+			"errors": errs,
+		})
 		return
 	}
 
