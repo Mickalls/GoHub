@@ -21,3 +21,4 @@
 - `Redis`：缓存
 - `captcha`：图片验证码库
 - `aliyum`的`SMS`服务`SDK`：发送短信验证
+- `jordan-wright/email`包：发送邮件
