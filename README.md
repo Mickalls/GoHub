@@ -2,11 +2,14 @@
 
 ### 已开发接口
 
-| 请求方法 |              API 地址               |                   说明                   |
-| :------: |:---------------------------------:| :--------------------------------------: |
-|   `POST`   | `/api/v1/auth/signup/phone/exist` | 验证手机号是否已注册(JSON参数名`phone`)  |
-|   `POST`   |  `/api/v1/auth/signup/email/exist`  |  验证邮箱是否已注册(JSON参数名`email`)   |
+| 请求方法 |              API 地址               |              说明             |
+| :------: |:---------------------------------:|:---------------------------:|
+|   `POST`   | `/api/v1/auth/signup/phone/exist` |  验证手机号是否已注册(JSON参数名`phone`) |
+|   `POST`   |  `/api/v1/auth/signup/email/exist`  |  验证邮箱是否已注册(JSON参数名`email`)  |
 |   `POST`   | `/api/v1/auth/verify-codes/captcha` | 生成图像验证码并`base64`编码后返回给客户端 |
+| `POST` | `/api/v1/auth/verify-codes/email` | 发送邮箱验证码 |
+| `POST` | `/api/v1/auth/verify-codes/phone` | 发送手机验证码 |
+
 
 
 
